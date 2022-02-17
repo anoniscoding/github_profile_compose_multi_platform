@@ -3,14 +3,11 @@ package me.karounwi.common.githubprofile.ui
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import me.karounwi.common.githubprofile.GithubProfileModule
-import me.karounwi.common.githubprofile.domain.model.Profile
 import me.karounwi.common.githubprofile.domain.usecase.GetProfilesUseCase
 import me.karounwi.common.util.DataState
 import me.karounwi.common.util.Event
-import kotlin.reflect.KProperty
 
 class GithubProfileViewModelImpl constructor(private val getProfilesUseCase: GetProfilesUseCase): GithubProfileViewModel {
     private val _dataStates: MutableStateFlow<DataState<GithubProfileViewData>> = MutableStateFlow(DataState.Success(null))
@@ -24,13 +21,13 @@ class GithubProfileViewModelImpl constructor(private val getProfilesUseCase: Get
 
     override fun getProfiles() {
         scope.launch {
-            val currentViewState = _dataStates.value.toData()
+            val currentViewData = _dataStates.value.toData()
             try {
-                _dataStates.value = DataState.Loading(currentViewState)
+                _dataStates.value = DataState.Loading(currentViewData)
                 val profiles = getProfilesUseCase()
                 _dataStates.value = DataState.Success(GithubProfileViewData(profiles))
             } catch (exception: Exception) {
-                _dataStates.value = DataState.Error(currentViewState, Event(exception))
+                _dataStates.value = DataState.Error(currentViewData, Event(exception))
             }
         }
     }
