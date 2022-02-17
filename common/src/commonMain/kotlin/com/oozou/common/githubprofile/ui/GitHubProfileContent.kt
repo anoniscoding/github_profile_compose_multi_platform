@@ -9,6 +9,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import com.oozou.common.util.DataState
 
 @OptIn(ExperimentalAnimationApi::class)
@@ -16,7 +17,7 @@ import com.oozou.common.util.DataState
 fun GithubProfileContent(dataState: DataState<GithubProfileViewData>) {
     val profiles = dataState.toData()?.profiles ?: emptyList()
 
-    LazyColumn(modifier = Modifier.fillMaxSize()) {
+    LazyColumn(modifier = Modifier.fillMaxSize().padding(bottom = 10.dp)) {
         profiles.forEach {
             item {
                 UserProfileUi(it)
