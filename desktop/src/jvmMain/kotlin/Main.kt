@@ -1,9 +1,9 @@
-package me.karounwi.desktop
+package com.oozou.desktop
 
 import androidx.compose.desktop.DesktopMaterialTheme
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
-import me.karounwi.common.DesktopApp
+import com.oozou.common.DesktopApp
 
 fun main() = application {
     Window(
