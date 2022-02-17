@@ -21,13 +21,13 @@ class GithubProfileViewModelImpl constructor(private val getProfilesUseCase: Get
 
     override fun getProfiles() {
         scope.launch {
-            val currentViewState = _dataStates.value.toData()
+            val currentViewData = _dataStates.value.toData()
             try {
-                _dataStates.value = DataState.Loading(currentViewState)
+                _dataStates.value = DataState.Loading(currentViewData)
                 val profiles = getProfilesUseCase()
                 _dataStates.value = DataState.Success(GithubProfileViewData(profiles))
             } catch (exception: Exception) {
-                _dataStates.value = DataState.Error(currentViewState, Event(exception))
+                _dataStates.value = DataState.Error(currentViewData, Event(exception))
             }
         }
     }
