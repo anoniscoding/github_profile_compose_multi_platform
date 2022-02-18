@@ -14,10 +14,8 @@ import com.oozou.common.util.DataState
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun GithubProfileContent(dataState: DataState<GithubProfileViewData>) {
-    val profiles = dataState.toData()?.profiles ?: emptyList()
-
     LazyColumn(modifier = Modifier.fillMaxSize()) {
-        profiles.forEach {
+        dataState.toData()?.profiles?.forEach {
             item {
                 UserProfileUi(it)
             }
