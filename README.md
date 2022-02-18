@@ -5,7 +5,7 @@ This repository is a sample project created for the team to learn about Compose 
 ## User story
 
 
-- As a user I want to see list of Github profile so that I see user and profile of the Github user.
+- As a user I want to see list of Github profile so that I see username and profile picture of the Github users.
 
 Please open the PR adding the user story before working on a feature. 
 
